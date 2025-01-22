@@ -14,5 +14,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
-  }
+  },
+  "name": "intellisuite",
+  "description": "AI-powered business intelligence suite"
 }

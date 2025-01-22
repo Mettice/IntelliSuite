@@ -19,4 +19,31 @@ model Lead {
   reason    String
   action    String
   createdAt DateTime @default(now())
+}
+
+model Content {
+  id        String   @id @default(cuid())
+  type      String   // 'blog' | 'social' | 'email'
+  prompt    String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+}
+
+model Competitor {
+  id          String   @id @default(cuid())
+  name        String
+  website     String
+  strengths   String[]
+  weaknesses  String[]
+  marketShare String
+  lastUpdated DateTime @default(now())
+}
+
+model MarketTrend {
+  id          String   @id @default(cuid())
+  trend       String
+  impact      String
+  description String
+  source      String
+  date        DateTime @default(now())
 } 
