@@ -1,3 +1,138 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --secondary: #818cf8;
+  --accent: #6366f1;
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-950 text-gray-100 min-h-screen;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-indigo-500/10 backdrop-blur-lg border border-indigo-200/20 shadow-xl;
+  }
+  
+  .glass-card {
+    @apply glass rounded-xl p-6 hover:bg-indigo-500/15 transition-all duration-300;
+  }
+  
+  .glass-button {
+    @apply glass px-4 py-2 rounded-lg hover:bg-indigo-500/20 active:bg-indigo-500/25 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-indigo-100;
+  }
+  
+  .glass-input {
+    @apply glass bg-indigo-500/5 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/30 transition-all duration-200;
+  }
+
+  .glass-form {
+    @apply glass-card space-y-6 max-w-md mx-auto;
+  }
+
+  .glass-dashboard {
+    @apply glass-card h-full;
+  }
+
+  .glass-navbar {
+    @apply glass sticky top-0 z-50 px-4 py-3 border-b border-indigo-200/10;
+  }
+
+  .glass-sidebar {
+    @apply glass fixed left-0 top-0 h-full w-64 p-4;
+  }
+
+  .glass-table {
+    @apply glass rounded-lg overflow-hidden;
+  }
+
+  .glass-table th {
+    @apply bg-indigo-500/20 text-indigo-100 font-medium px-6 py-3 text-left text-sm;
+  }
+
+  .glass-table td {
+    @apply px-6 py-4 text-indigo-100 text-sm;
+  }
+
+  .glass-table tr {
+    @apply hover:bg-indigo-500/10 transition-colors duration-150;
+  }
+
+  .glass-stat-card {
+    @apply glass-card flex flex-col items-center justify-center text-center p-6 hover:bg-indigo-500/15;
+  }
+
+  .glass-stat-value {
+    @apply text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-indigo-100 mb-2;
+  }
+
+  .glass-stat-label {
+    @apply text-sm text-indigo-300;
+  }
+
+  .score-indicator {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/20 text-indigo-100;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-indigo-500/20 rounded-full hover:bg-indigo-500/30;
+}
+
+/* Chart.js Customization */
+.chart-container {
+  @apply glass-card p-6 !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Loading States */
+.loading-shimmer {
+  @apply animate-pulse bg-indigo-500/10;
+}
+
+/* Responsive Design Helpers */
+.responsive-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+}
+
+.responsive-padding {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Category Colors */
+.category-hot {
+  @apply text-indigo-200;
+}
+
+.category-warm {
+  @apply text-indigo-200;
+}
+
+.category-cold {
+  @apply text-indigo-200;
+}

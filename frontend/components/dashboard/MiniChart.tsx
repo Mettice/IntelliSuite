@@ -30,26 +30,38 @@ export default function MiniChart({ data, color }: MiniChartProps) {
         datasets: [{
           data,
           borderColor: color,
-          borderWidth: 2,
-          tension: 0.4,
-          pointRadius: 0,
+          borderWidth: 3, // Thicker line for better visibility
+          tension: 0.5, // Smoother curve
+          pointRadius: 0, // No points for minimal design
           fill: true,
           backgroundColor: (context) => {
             const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height)
-            gradient.addColorStop(0, `${color}20`)
-            gradient.addColorStop(1, `${color}05`)
+            gradient.addColorStop(0, `${color}40`) // Stronger gradient at the top
+            gradient.addColorStop(1, `${color}02`) // Faded gradient at the bottom
             return gradient
-          }
+          },
+          hoverBackgroundColor: `${color}30`, // Interactive hover effect
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false }, // Disable tooltips for minimal design
+        },
         scales: {
-          x: { display: false },
-          y: { display: false }
-        }
+          x: { display: false }, // Hide x-axis
+          y: { display: false }, // Hide y-axis
+        },
+        animation: {
+          duration: 1000, // Smooth animation duration
+          easing: 'easeOutQuart', // Smooth easing function
+        },
+        interaction: {
+          mode: 'nearest', // Highlight nearest point on hover
+          intersect: false,
+        },
       }
     })
 
@@ -60,5 +72,14 @@ export default function MiniChart({ data, color }: MiniChartProps) {
     }
   }, [data, color])
 
-  return <canvas ref={chartRef} height="40" />
-} 
+  return (
+    <div className="relative w-full h-10">
+      <canvas 
+        ref={chartRef} 
+        className="w-full h-full"
+        aria-label="Mini chart" 
+        role="img"
+      />
+    </div>
+  )
+}

@@ -7,9 +7,13 @@ export default function DashboardLayout({
   children: ReactNode
 }) {
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <Navigation />
-      {children}
+      <main className="responsive-padding py-6 animate-fadeIn">
+        <div className="max-w-7xl mx-auto">
+          {children}
+        </div>
+      </main>
     </div>
   )
 } 

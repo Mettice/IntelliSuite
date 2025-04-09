@@ -1,24 +1,42 @@
-'use client'
-
-import { ScoreCardProps } from '../../types'
-
-const bgColors = {
-  hot: 'bg-red-100',
-  warm: 'bg-yellow-100',
-  cold: 'bg-blue-100'
+interface ScoreCardProps {
+  title: string
+  count: number
+  category: 'hot' | 'warm' | 'cold'
+  loading?: boolean
 }
 
-const textColors = {
-  hot: 'text-red-800',
-  warm: 'text-yellow-800',
-  cold: 'text-blue-800'
-}
+export default function ScoreCard({ title, count, category, loading }: ScoreCardProps) {
+  // Define colors for each category
+  const colors = {
+    hot: {
+      bg: 'bg-red-50', // Light red background
+      text: 'text-red-600', // Dark red text
+      border: 'border-red-200', // Light red border
+    },
+    warm: {
+      bg: 'bg-yellow-50', // Light yellow background
+      text: 'text-yellow-600', // Dark yellow text
+      border: 'border-yellow-200', // Light yellow border
+    },
+    cold: {
+      bg: 'bg-blue-50', // Light blue background
+      text: 'text-blue-600', // Dark blue text
+      border: 'border-blue-200', // Light blue border
+    },
+  }
 
-export default function ScoreCard({ title, count, category }: ScoreCardProps) {
+  const categoryColors = colors[category]
+
   return (
-    <div className={`${bgColors[category]} rounded-lg shadow p-5`}>
-      <h3 className={`${textColors[category]} text-lg font-medium`}>{title}</h3>
-      <p className="mt-2 text-3xl font-semibold">{count}</p>
+    <div className={`p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 ${categoryColors.bg} border ${categoryColors.border}`}>
+      <h3 className="text-lg font-medium text-gray-700">{title}</h3>
+      {loading ? (
+        <div className="h-8 w-20 bg-gray-200 rounded mt-2 animate-pulse"></div>
+      ) : (
+        <p className={`text-4xl font-bold mt-2 ${categoryColors.text}`}>
+          {count}
+        </p>
+      )}
     </div>
   )
-} 
+}

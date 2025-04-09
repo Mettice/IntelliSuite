@@ -1,10 +1,16 @@
-export interface Lead {
-  name: string;
-  'email ': string;
-  'phone ': string;
-  'company ': string;
-  'message ': string;
-  source: string;
+export type Lead = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  company: string
+  message: string
+  source: string
+  score?: number
+  category?: 'HOT' | 'WARM' | 'COLD'
+  reason?: string
+  action?: string
+  createdAt?: string
 }
 
 export interface LeadAnalysis {
@@ -19,4 +25,5 @@ export interface ScoreCardProps {
   title: string;
   count: number;
   category: 'hot' | 'warm' | 'cold';
+  loading: boolean;
 } 
